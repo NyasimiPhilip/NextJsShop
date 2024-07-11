@@ -25,8 +25,8 @@ export default function RootLayout({
           <div className='flex-1 flex flex-col h-full'>
             <Providers>{children}</Providers>
           </div>
-        </main>
-        <Footer/>
+          <Footer/>
+        </main>        
         </body>
     </html>
   );
