@@ -38,3 +38,18 @@ const Phone = ({ imgSrc, className, dark = false, ...props }: PhoneProps) => {
 }
 
 export default Phone
+/**
+ * ClassNames Explanation:
+ * 
+ * - 'relative': Positions the div relative to its normal position, allowing for absolute positioning within.
+ * - 'pointer-events-none': Disables pointer events on the element, making it non-interactive.
+ * - 'z-50': Sets the z-index to 50, placing the element in front of other elements with lower z-index values.
+ * - 'overflow-hidden': Hides any content that overflows outside the element's boundaries.
+ * - 'absolute': Positions the div absolutely within its closest positioned ancestor.
+ * - '-z-10': Sets the z-index to -10, placing the element behind other elements with higher z-index values.
+ * - 'inset-0': Positions the element on all sides (top, right, bottom, left) to 0, stretching it to fill its parent.
+ * - 'object-cover': Ensures the img covers the entire area of its container, maintaining aspect ratio and cropping if necessary.
+ * - 'min-w-full': Sets the minimum width of the img to 100% of its container.
+ * - 'min-h-full': Sets the minimum height of the img to 100% of its container.
+ * - 'select-none': Prevents the img from being selected.
+ */

@@ -200,10 +200,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </MaxWidthWrapper>
+        </MaxWidthWrapper>        
 
-        <div className='pt-16'>
-          <Reviews />
+        <div className='pt-16'>          
+          <Reviews/>
         </div>
       </section>
 

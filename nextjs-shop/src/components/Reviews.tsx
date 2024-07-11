@@ -15,8 +15,10 @@ const PHONES = [
   '/testimonials/5.jpg',
   '/testimonials/6.jpg',
 ]
+console.log('PHONES:', PHONES)
 
 function splitArray<T>(array: Array<T>, numParts: number) {
+  console.log('Splitting array:', array, 'into', numParts, 'parts')
   const result: Array<Array<T>> = []
 
   for (let i = 0; i < array.length; i++) {
@@ -27,6 +29,7 @@ function splitArray<T>(array: Array<T>, numParts: number) {
     result[index].push(array[i])
   }
 
+  console.log('Resulting split array:', result)
   return result
 }
 
@@ -46,18 +49,22 @@ function ReviewColumn({
   const duration = `${columnHeight * msPerPixel}ms`
 
   useEffect(() => {
+    console.log('ReviewColumn useEffect triggered')
     if (!columnRef.current) return
 
     const resizeObserver = new window.ResizeObserver(() => {
+      console.log('ResizeObserver triggered')
       setColumnHeight(columnRef.current?.offsetHeight ?? 0)
+      console.log('Column height set to:', columnHeight)
     })
 
     resizeObserver.observe(columnRef.current)
 
     return () => {
+      console.log('Cleanup ResizeObserver')
       resizeObserver.disconnect()
     }
-  }, [])
+  }, [columnHeight])
 
   return (
     <div
@@ -94,6 +101,8 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
       Math.floor(Math.random() * POSSIBLE_ANIMATION_DELAYS.length)
     ]
 
+  console.log('Rendering Review with imgSrc:', imgSrc)
+
   return (
     <div
       className={cn(
@@ -110,10 +119,16 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
 function ReviewGrid() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const isInView = useInView(containerRef, { once: true, amount: 0.4 })
+  console.log('ReviewGrid inView:', isInView)
   const columns = splitArray(PHONES, 3)
   const column1 = columns[0]
   const column2 = columns[1]
   const column3 = splitArray(columns[2], 2)
+
+  console.log('Columns:', columns)
+  console.log('Column1:', column1)
+  console.log('Column2:', column2)
+  console.log('Column3:', column3)
 
   return (
     <div
@@ -158,10 +173,9 @@ export function Reviews() {
       <img
         aria-hidden='true'
         alt=''
-        src='/what-people-are-buying.png'
+        src='/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        '
         className='absolute select-none hidden xl:block -left-32 top-1/3'
       />
-
       <ReviewGrid />
     </MaxWidthWrapper>
   )
