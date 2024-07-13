@@ -34,8 +34,8 @@ const Page = () => {
 
     toast({
       title: `${file.file.type} type is not supported.`,
-      description: "Please choose a PNG, JPG, or JPEG image instead.",
-      variant: "destructive"
+      description: 'Please choose a PNG, JPG, or JPEG image instead.',
+      variant: 'destructive',
     })
   }
 
@@ -54,7 +54,8 @@ const Page = () => {
         {
           'ring-blue-900/25 bg-blue-900/10': isDragOver,
         }
-      )}>
+      )}
+    >
       <div className='relative flex flex-1 flex-col items-center justify-center w-full'>
         <Dropzone
           onDropRejected={onDropRejected}
@@ -65,18 +66,21 @@ const Page = () => {
             'image/jpg': ['.jpg'],
           }}
           onDragEnter={() => setIsDragOver(true)}
-          onDragLeave={() => setIsDragOver(false)}>
+          onDragLeave={() => setIsDragOver(false)}
+        >
           {({ getRootProps, getInputProps }) => (
             <div
               className='h-full w-full flex-1 flex flex-col items-center justify-center'
-              {...getRootProps()}>
+              {...getRootProps()}
+            >
               <input {...getInputProps()} />
               {isDragOver ? (
                 <MousePointerSquareDashed className='h-6 w-6 text-zinc-500 mb-2' />
               ) : isUploading || isPending ? (
                 <Loader2 className='animate-spin h-6 w-6 text-zinc-500 mb-2' />
               ) : (
-                <Image  className='h-6 w-6 text-zinc-500 mb-2' />
+                // eslint-disable-next-line jsx-a11y/alt-text
+                <Image className='h-6 w-6 text-zinc-500 mb-2'/>
               )}
               <div className='flex flex-col justify-center mb-2 text-sm text-zinc-700'>
                 {isUploading ? (
