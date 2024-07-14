@@ -44,7 +44,7 @@ const DesignConfigurator = ({
     const { toast } = useToast()
     const router = useRouter()
 
-    const { mutate: saveConfig, isLoading: isPending } = useMutation<void, Error, SaveConfigArgs, unknown>({
+    const { mutate: saveConfig, isPending } = useMutation({
         mutationKey: ['save-config'],
         mutationFn: async (args: SaveConfigArgs) => {
         await Promise.all([saveConfiguration(), _saveConfig(args)])
@@ -60,6 +60,7 @@ const DesignConfigurator = ({
             router.push(`/configure/preview?id=${configId}`)
         },
 })
+
 const [options, setOptions] = useState<{
     color: (typeof COLORS)[number]
     model: (typeof MODELS.options)[number]
@@ -150,7 +151,7 @@ function base64ToBlob(base64: string, mimeType: string) {
     return new Blob([byteArray], { type: mimeType })
 }
 
-return(
+return (
         <div className='relative mt-20 grid grid-cols-1 lg:grid-cols-3 mb-20 pb-20'>
             <div
             ref={containerRef}
@@ -214,7 +215,8 @@ return(
                         />
                     </div>
                 </Rnd>
-            </div>  
+            </div>
+  
             <div className='h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col bg-white'>
                 <ScrollArea className='relative flex-1 overflow-auto'>
                     <div
@@ -276,10 +278,10 @@ return(
                                             role='button'
                                             aria-haspopup='true'
                                             aria-expanded='false'
-                                            className='w-[200px] justify-between'
+                                            className='w-full justify-between'
                                         >
                                             {options.model.label}
-                                            <ChevronsUpDown className='w-4 h-4 opacity-50' />
+                                            <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                                         </Button>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className='w-[200px]'>
@@ -303,7 +305,7 @@ return(
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                             </div>
-  
+
                             <div className='space-y-2'>
                                 <CustomLabel>Material: {options.material.label}</CustomLabel>
                                 <DropdownMenu>
@@ -314,33 +316,47 @@ return(
                                             role='button'
                                             aria-haspopup='true'
                                             aria-expanded='false'
-                                            className='w-[200px] justify-between'
+                                            className='w-full justify-between'
                                         >
-                                            {options.material.label}
-                                            <ChevronsUpDown className='w-4 h-4 opacity-50' />
+                                            <span className='font-medium'>{options.material.label}</span>
+                                            <div className='ml-auto flex items-center space-x-2'>
+                                                <span className='text-gray-500'>${(options.material.price / 100).toFixed(2)}</span>
+                                                <ChevronsUpDown className='h-4 w-4 shrink-0 opacity-50' />
+                                            </div>
                                         </Button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent className='w-[200px]'>
+
+                                    <DropdownMenuContent className='w-[300px]'>
                                         {MATERIALS.options.map((material) => (
-                                        <DropdownMenuItem
-                                        key={material.label}
-                                        onSelect={() => {
-                                            setOptions((prev) => ({
-                                            ...prev,
-                                            material,
-                                            }));
-                                        }}
-                                        className='cursor-pointer'
-                                        >
-                                            {material.label}
-                                            {material.label === options.material.label && (
-                                            <Check className='w-4 h-4 opacity-50' />
-                                            )}
-                                        </DropdownMenuItem>
+                                            <DropdownMenuItem
+                                            key={material.label}
+                                            onSelect={() => {
+                                                setOptions((prev) => ({
+                                                ...prev,
+                                                material,
+                                                }));
+                                            }}
+                                            className='cursor-pointer w-full flex flex-col items-start space-y-2'
+                                            >
+                                                <span className='flex justify-between w-full'>
+                                                    <span className='flex items-center space-x-2'>
+                                                        <span>{material.label}</span>
+                                                        {material.label === options.material.label && (
+                                                        <Check className='w-4 h-4 opacity-50' />
+                                                        )}
+                                                    </span>
+                                                    <span className='font-medium text-gray-900'>
+                                                        {formatPrice(material.price / 100)}
+                                                    </span>
+                                                </span>
+                                            </DropdownMenuItem>
                                         ))}
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                             </div>
+
+  
+                            
   
                             <div className='space-y-2'>
                                 <CustomLabel>Finish: {options.finish.label}</CustomLabel>
@@ -352,64 +368,82 @@ return(
                                             role='button'
                                             aria-haspopup='true'
                                             aria-expanded='false'
-                                            className='w-[200px] justify-between'
+                                            className='w-full justify-between'
                                         >
-                                            {options.finish.label}
-                                            <ChevronsUpDown className='w-4 h-4 opacity-50' />
+                                            <span className='font-medium'>{options.finish.label}</span>
+                                            <div className='ml-auto flex items-center space-x-2'>
+                                                <span className='text-gray-500'>${(options.finish.price / 100).toFixed(2)}</span>
+                                                <ChevronsUpDown className='h-4 w-4 shrink-0 opacity-50' />
+                                            </div>                                            
+                                            
                                         </Button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent className='w-[200px]'>
+                                    <DropdownMenuContent className='w-[300px]'>
                                         {FINISHES.options.map((finish) => (
-                                        <DropdownMenuItem
-                                        key={finish.label}
-                                        onSelect={() => {
-                                            setOptions((prev) => ({
-                                            ...prev,
-                                            finish,
-                                            }));
-                                        }}
-                                        className='cursor-pointer'
-                                        >
-                                            {finish.label}
-                                            {finish.label === options.finish.label && (
-                                            <Check className='w-4 h-4 opacity-50' />
-                                            )}
-                                        </DropdownMenuItem>
+                                            <DropdownMenuItem
+                                            key={finish.label}
+                                            onSelect={() => {
+                                                setOptions((prev) => ({
+                                                ...prev,
+                                                finish,
+                                                }));
+                                            }}
+                                            className='cursor-pointer w-full flex flex-col items-start space-y-2'
+                                            >
+                                                <span className='flex justify-between w-full'>
+                                                    <span className='flex items-center space-x-2'>                                                    
+                                                        <span>{finish.label}</span>
+                                                        {finish.label === options.finish.label && (
+                                                        <Check className='w-4 h-4 opacity-50' />
+                                                        )}
+                                                    </span>
+                                                    <span className='font-medium text-gray-900'>
+                                                            {formatPrice(finish.price / 100)}
+                                                    </span>
+                                                </span>                                               
+                                            </DropdownMenuItem>
                                         ))}
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                             </div>
                         </div>
   
-                        <div className='w-full h-px bg-zinc-200 my-6' />
-  
-                            <div className='flex items-center justify-between'>
-                                <p className='text-xl font-medium text-primary'>
-                                    {formatPrice(BASE_PRICE)}
-                                </p>
-                                <Button
-                                    aria-label='Preview and Save'
-                                    className='h-12 w-12 p-0 rounded-lg'
-                                    onClick={() =>
-                                        saveConfig({
-                                        configId,
-                                        color: options.color.label,
-                                        model: options.model.label,
-                                        material: options.material.label,
-                                        finish: options.finish.label,
-                                        })
-                                    }
-                                >
-                                    <ArrowRight className='w-5 h-5' />
-                                </Button>
-                            </div>
-                        </div>
+                        <div className='w-full h-px bg-zinc-200 my-6' /></div>
                     </div>
                 </ScrollArea>
-            </div>
+
+                <div className='w-full px-8 h-16 bg-white'>
+                    <div className='h-px w-full bg-zinc-200' />
+                        <div className='w-full h-full flex justify-between items-center'>        
+                            <p className='text-xl font-medium text-primary'>
+                                {formatPrice(
+                                    (BASE_PRICE + options.finish.price + options.material.price) / 100
+                                )}
+                            </p>
+                            <Button
+                                isLoading={isPending}
+                                disabled={isPending}
+                                loadingText="Saving"
+                                onClick={() =>
+                                    saveConfig({
+                                        configId,
+                                        color: options.color.value,
+                                        finish: options.finish.value,
+                                        material: options.material.value,
+                                        model: options.model.value,
+                                    })
+                                }
+                                size='sm'
+                            >
+                                Continue
+                                <ArrowRight className='h-4 w-4 ml-1.5 inline' />
+                            </Button>
+                        </div> 
+                    </div>
+                </div>
         </div>
-    );
-  
+    )
+}
 export default DesignConfigurator
 
 
