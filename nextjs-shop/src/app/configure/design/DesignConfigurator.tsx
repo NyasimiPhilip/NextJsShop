@@ -6,7 +6,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn, formatPrice } from '@/lib/utils'
 import NextImage from 'next/image'
 import { Rnd } from 'react-rnd'
-import {  Label as HeadlessLabel, Radio, RadioGroup } from '@headlessui/react'
+import {  Label, Radio, RadioGroup } from '@headlessui/react'
 import { useRef, useState } from 'react'
 import {
   COLORS,
@@ -180,15 +180,15 @@ return (
                 </div>    
                 <Rnd
                 default={{
-                    x: 150,
+                    x: renderedPosition.x,
                     y: 205,
                     height: imageDimensions.height / 4,
                     width: imageDimensions.width / 4,
                 }}
                 onResizeStop={(_, __, ref, ___, { x, y }) => {
                     setRenderedDimension({
-                    height: parseInt(ref.style.height.slice(0, -2)),
-                    width: parseInt(ref.style.width.slice(0, -2)),
+                        height: parseInt(ref.style.height.slice(0, -2)),
+                        width: parseInt(ref.style.width.slice(0, -2)),
                     });
         
                     setRenderedPosition({ x, y });
@@ -198,7 +198,7 @@ return (
                     setRenderedPosition({ x, y });
                 }}
                 className='absolute z-20 border-[3px] border-primary'
-                lockAspectRatio
+                // lockAspectRatio
                 resizeHandleComponent={{
                     bottomRight: <HandleComponent />,
                     bottomLeft: <HandleComponent />,
@@ -211,7 +211,7 @@ return (
                         src={imageUrl}
                         fill
                         alt='your image'
-                        className='pointer-events-none'
+                        className='pointer-events-none rounded-[2.5rem]'
                         />
                     </div>
                 </Rnd>
@@ -240,7 +240,7 @@ return (
                                     }));
                                 }}
                                 >
-                                    <CustomLabel>Color: {options.color.label}</CustomLabel>
+                                    <CustomLabel><strong>Color:</strong> {options.color.label}</CustomLabel>
                                     <div className='mt-3 flex items-center space-x-3'>
                                         {COLORS.map((color) => (
                                         <Radio
@@ -269,7 +269,7 @@ return (
                                 </RadioGroup>
   
                                 <div className='space-y-2'>
-                                <CustomLabel>Model: {options.model.label}</CustomLabel>
+                                <CustomLabel><strong>Model:</strong> {options.model.label}</CustomLabel>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button
@@ -307,7 +307,7 @@ return (
                             </div>
 
                             <div className='space-y-2'>
-                                <CustomLabel>Material: {options.material.label}</CustomLabel>
+                                <CustomLabel><strong>Material:</strong> {options.material.label}</CustomLabel>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button
@@ -354,12 +354,11 @@ return (
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                             </div>
-
   
                             
   
                             <div className='space-y-2'>
-                                <CustomLabel>Finish: {options.finish.label}</CustomLabel>
+                                <CustomLabel><strong>Finish:</strong> {options.finish.label}</CustomLabel>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button
