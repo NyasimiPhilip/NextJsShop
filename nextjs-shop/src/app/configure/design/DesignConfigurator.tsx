@@ -49,7 +49,8 @@ const DesignConfigurator = ({
         mutationFn: async (args: SaveConfigArgs) => {
         await Promise.all([saveConfiguration(), _saveConfig(args)])
         },
-        onError: () => {
+        onError: (error) => {
+            console.error('Error occurred:', error); // Log the error to the console
             toast({
                 title: 'Something went wrong',
                 description: 'There was an error on our end. Please try again.',
