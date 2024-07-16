@@ -102,4 +102,3 @@ model BillingAddress {
   phoneNumber String?
   orders      Order[]
 }
-
