@@ -11,7 +11,7 @@ const Navbar = async() =>{
     const isAdmin = user?.email === process.env.ADMIN_EMAIL
     return(
     <nav className="sticky z-[100] h-14 inset-x-0 top-0 w-full border-b
-    border-gray-200 bg-white/75 backdrop-blur-lg transition-all" >
+    border-gray-200 bg-white/75 backdrop-blur-lg transition-all large-text" >
         <MaxWidthWrapper>
             <div className='flex h-14 items-center justify-between border-b
             border-zinc-200'>
@@ -24,7 +24,7 @@ const Navbar = async() =>{
                       <Link
                           href='/api/auth/logout'
                             className={buttonVariants({
-                            size: 'sm',
+                            size: 'lg',
                             variant: 'ghost',
                           })}>
                             Sign out
@@ -32,15 +32,15 @@ const Navbar = async() =>{
                          {isAdmin ? <Link
                           href='/dashboard'
                             className={buttonVariants({
-                            size: 'sm',
+                            size: 'lg',
                             variant: 'ghost',
                           })}>
                             Dashboard ✨
                           </Link> : null}
                           <Link
-                          href='/api/auth/logout'
+                          href='/configure/upload'
                             className={buttonVariants({
-                            size: 'sm',
+                            size: 'lg',
                             variant: 'ghost',
                           })}>
                             Create case
@@ -52,7 +52,7 @@ const Navbar = async() =>{
                     <Link
                       href='/api/auth/register'
                       className={buttonVariants({
-                        size: 'sm',
+                        size: 'lg',
                         variant: 'ghost',
                       })}>
                       Sign up
@@ -61,7 +61,7 @@ const Navbar = async() =>{
                     <Link
                       href='/api/auth/login'
                       className={buttonVariants({
-                        size: 'sm',
+                        size: 'lg',
                         variant: 'ghost',
                       })}>
                       Login
@@ -72,7 +72,7 @@ const Navbar = async() =>{
                     <Link
                       href='/configure/upload'
                       className={buttonVariants({
-                        size: 'sm',
+                        size: 'lg',
                         className: 'hidden sm:flex items-center gap-1',
                       })}>
                       Create case

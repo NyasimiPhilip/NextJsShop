@@ -41,6 +41,7 @@ export function constructMetadata({
     },
     icons: {
       icon: icons
-    }
+    },
+    metadataBase: new URL("https://casecobra-ebon.vercel.app/")
   };
 }
