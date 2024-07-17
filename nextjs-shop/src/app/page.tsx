@@ -201,7 +201,7 @@ export default function Home() {
           </div>
         </MaxWidthWrapper>        
 
-        <div className='pt-16'>          
+        <div className='pt-16'>             
           <Reviews/>
         </div>
       </section>
@@ -240,7 +240,7 @@ export default function Home() {
             </div>
           </div>
 
-          <ul className='mx-auto mt-12 max-w-prose sm:text-lg space-y-2 w-fit'>
+          <ul className='mx-auto mt-12 max-w-prose font-medium space-y-2 w-fit'>
             <li className='w-fit'>
               <Check className='h-5 w-5 text-green-600 inline mr-1.5' />
               High-quality silicone material

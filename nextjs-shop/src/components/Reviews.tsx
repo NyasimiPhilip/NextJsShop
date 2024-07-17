@@ -18,7 +18,7 @@ const PHONES = [
 console.log('PHONES:', PHONES)
 
 function splitArray<T>(array: Array<T>, numParts: number) {
-  console.log('Splitting array:', array, 'into', numParts, 'parts')
+  //console.log('Splitting array:', array, 'into', numParts, 'parts')
   const result: Array<Array<T>> = []
 
   for (let i = 0; i < array.length; i++) {
@@ -29,7 +29,7 @@ function splitArray<T>(array: Array<T>, numParts: number) {
     result[index].push(array[i])
   }
 
-  console.log('Resulting split array:', result)
+  //console.log('Resulting split array:', result)
   return result
 }
 
@@ -125,10 +125,10 @@ function ReviewGrid() {
   const column2 = columns[1]
   const column3 = splitArray(columns[2], 2)
 
-  console.log('Columns:', columns)
-  console.log('Column1:', column1)
-  console.log('Column2:', column2)
-  console.log('Column3:', column3)
+  // console.log('Columns:', columns)
+  // console.log('Column1:', column1)
+  // console.log('Column2:', column2)
+  // console.log('Column3:', column3)
 
   return (
     <div
