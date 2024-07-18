@@ -1,4 +1,10 @@
 {
-  "src": "/(.*)",
-  "dest": "/$1"
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "cleanUrls": true,
+  "framework": "nextjs"
 }
