@@ -1,0 +1,45 @@
+{
+    "routes": [
+      {
+        "src": "/configure/upload",
+        "dest": "/pages/configure/upload.tsx"
+      },
+      {
+        "src": "/api/upload",
+        "dest": "/pages/api/uploadthing/route.ts"
+      },
+      {
+        "src": "/webhooks",
+        "dest": "/pages/api/webhooks/route.ts"
+      },
+      {
+        "src": "/auth/:kind",
+        "dest": "/pages/api/auth/[kind].route.ts"
+      },
+      {
+        "src": "/callback",
+        "dest": "/pages/auth-callback/actions.ts"
+      },
+      {
+        "src": "/dashboard",
+        "dest": "/pages/dashboard/actions.ts"
+      },
+      {
+        "src": "/thank-you",
+        "dest": "/pages/thank-you/actions.ts"
+      },
+      {
+        "src": "/[...auth]",
+        "dest": "/pages/api/auth/[...auth].route.ts"
+      },
+      {
+        "src": "/[...webhooks]",
+        "dest": "/pages/api/webhooks/[...webhooks].route.ts"
+      },
+      {
+        "src": "/[...uploadthing]",
+        "dest": "/pages/api/uploadthing/[...uploadthing].route.ts"
+      }
+    ]
+  }
+  
