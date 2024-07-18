@@ -264,7 +264,7 @@ export default function Home() {
                   size: 'lg',
                   className: 'mx-auto mt-8',
                 })}
-                href='/configure/upload'>
+                href='/configure/Upload'>
                 Create your case now <ArrowRight className='h-4 w-4 ml-1.5' />
               </Link>
             </div>
