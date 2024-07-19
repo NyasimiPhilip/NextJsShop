@@ -79,7 +79,8 @@ export const createCheckoutSession = async ({ configId }: { configId: string }) 
     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/configure/preview?id=${configuration.id}`,
     payment_method_types: ['card'],
     mode: 'payment',
-    shipping_address_collection: { allowed_countries: [] },
+    billing_address_collection: 'required',
+    shipping_address_collection: { allowed_countries: ['US', 'KE','DE'] },
     metadata: {
       userId: prismaUser.id,
       orderId: order.id,
