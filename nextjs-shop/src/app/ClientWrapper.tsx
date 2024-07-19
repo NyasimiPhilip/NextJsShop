@@ -8,10 +8,10 @@ const ClientWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const [showSpinner, setShowSpinner] = useState(true);
 
   useEffect(() => {
-    // Simulate a delay of 0.8 seconds
+    // Simulate a delay of 1.2 seconds
     const timer = setTimeout(() => {
       setShowSpinner(false);
-    }, 800);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);

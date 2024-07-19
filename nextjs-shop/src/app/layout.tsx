@@ -26,7 +26,8 @@ export default function RootLayout({
         <main className='flex grainy-light flex-col min-h-[calc(100vh-3.5rem-1px)]'>          
             <ClientWrapper>
               <Providers>{children}</Providers>
-            </ClientWrapper>         
+            </ClientWrapper>
+         
           <Footer />
         </main>
         <Toaster />
